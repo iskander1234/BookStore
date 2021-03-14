@@ -3,9 +3,10 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class PriceCalculatorService implements PriceCalculatorServiceInterface, ApplicationEventPublisherAware {
     @Autowired
     private BooksRepository booksRepository;
