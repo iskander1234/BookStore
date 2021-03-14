@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface PriceCalculatorServiceInterface {
     List<Book> findAll();
-    List<Book> getByType(Book bookType);
+    List<Book> getByType(BookType bookType);
     Book findById(long id);
 
     void save(Book book);

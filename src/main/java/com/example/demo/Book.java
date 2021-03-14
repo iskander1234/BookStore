@@ -12,11 +12,11 @@ public class Book {
     private String name;
     private double fixPrice;
     private double sold;
-    private int percentageOfSales;
+    private float percentageOfSales;
     @Enumerated(EnumType.STRING)
     private BookType bookType;
 
-    public Book(Long id, String name, double fixPrice, double sold, int percentageOfSales, BookType bookType) {
+    public Book(Long id, String name, double fixPrice, double sold, float percentageOfSales, BookType bookType) {
         this.id = id;
         this.name = name;
         this.fixPrice = fixPrice;
@@ -45,7 +45,7 @@ public class Book {
         return sold;
     }
 
-    public int getPercentageOfSales() {
+    public float getPercentageOfSales() {
         return percentageOfSales;
     }
 
@@ -69,7 +69,7 @@ public class Book {
         this.sold = sold;
     }
 
-    public void setPercentageOfSales(int percentageOfSales) {
+    public void setPercentageOfSales(float percentageOfSales) {
         this.percentageOfSales = percentageOfSales;
     }
 
