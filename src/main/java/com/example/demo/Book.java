@@ -1,11 +1,26 @@
 package com.example.demo;
 
 
+import com.example.demo.model.AuditModel;
+import com.example.demo.model.Library;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "books")
-public class Book {
+@AllArgsConstructor
+@NoArgsConstructor
+@SequenceGenerator(
+        name = "seq",
+        sequenceName = "s_book",
+        initialValue = 1,
+        allocationSize = 1
+)
+public class Book extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,18 +30,15 @@ public class Book {
     private float percentageOfSales;
     @Enumerated(EnumType.STRING)
     private BookType bookType;
+    @ManyToOne
+    private Library library;
 
-    public Book(Long id, String name, double fixPrice, double sold, float percentageOfSales, BookType bookType) {
-        this.id = id;
-        this.name = name;
-        this.fixPrice = fixPrice;
-        this.sold = sold;
-        this.percentageOfSales = percentageOfSales;
-        this.bookType = bookType;
+    public Library getLibrary() {
+        return library;
     }
 
-    public Book() {
-
+    public void setLibrary(Library library) {
+        this.library = library;
     }
 
     public Long getId() {
