@@ -8,9 +8,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class DemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
-        BookStoreController bookStoreController = context.getBean("bookStoreController", BookStoreController.class);
+         SpringApplication.run(DemoApplication.class, args);
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+//        BookStoreController bookStoreController = context.getBean("bookStoreController", BookStoreController.class);
     }
 
 }
