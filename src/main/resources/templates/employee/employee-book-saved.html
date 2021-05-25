@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Книга сохранена</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/account-layout.css}">
+</head>
+<body>
+
+<div class="container">
+    <h3>Книга сохранена!</h3>
+    <br/>
+    <div class="row">
+        <div class="col-50">
+            <form th:action="@{/employee/books}">
+                <input type="submit" value="Вернитесь назад">
+            </form>
+        </div>
+        <div class="col-50">
+            <form th:action="@{/employee/books/newbook}">
+                <input type="submit" value="Добавить другую книгу">
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

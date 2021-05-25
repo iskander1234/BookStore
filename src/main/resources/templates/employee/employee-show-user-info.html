@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Вставьте заголовок здесь</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/account-layout.css}">
+</head>
+<body>
+<ul th:replace="page-layout :: employeeNavBar"></ul>
+<div class="container">
+    <h3>Информация о пользователе</h3>
+
+    <div class="row">
+        <div class="col-50">
+            Имя пользователя:
+        </div>
+        <div class="col-75">
+            <text th:text="${user.userName}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-50">
+            Имя:
+        </div>
+        <div class="col-75">
+            <text th:text="${user.firstName}"/>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-50">
+            Фамилия:
+        </div>
+        <div class="col-75">
+            <text th:text="${user.lastName}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-50">
+            Email:
+        </div>
+        <div class="col-75">
+            <text th:text="${user.email}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-50">
+            Адрес:
+        </div>
+        <div class="col-75">
+            <text th:text="${user.address}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-50">
+            Город:
+        </div>
+        <div class="col-75">
+            <text th:text="${user.city}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-50">
+            Телефонный номер:
+        </div>
+        <div class="col-75">
+            <text th:text="${user.phoneNumber}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-50">
+            Общий штраф:
+        </div>
+        <div class="col-75" th:if="${fine > 0}">
+            <text style="color:red" th:text="${'$ ' + fine}">
+        </div>
+
+        <div class="col-75" th:if="${fine == 0}">
+            <text th:text="${'$ ' + fine}">
+        </div>
+    </div>
+
+    <h4>Книги в использовании</h4>
+
+    <div th:if="${user.books.size() == 0}">
+        Книги не используются.
+    </div>
+    <table id="tablestyle" th:if="${user.books.size() > 0}">
+        <tr>
+            <th>Заголовок</th>
+            <th>Автор</th>
+            <th>Год выпуска</th>
+            <th>Версия</th>
+            <th>Дата возвращения</th>
+            <th>Отлично</th>
+        </tr>
+        <tr th:each="book : ${booksInUse}">
+            <td th:text="${book.key.title}"></td>
+            <td th:text="${book.key.author}"></td>
+            <td th:text="${book.key.releaseYear}"></td>
+            <td th:text="${book.key.edition}"></td>
+            <td th:text="${book.key.returnDate}"></td>
+            <td th:if="${book.value > 0}" style="color:red" th:text="${'$ ' + book.value}"></td>
+            <td th:if="${book.value == 0}" th:text="${'$ ' + book.value}"></td>
+        </tr>
+    </table>
+
+    <h4>Зарезервированные книги</h4>
+
+    <div th:if="${user.reservedBooks.size() == 0}">
+        Книги не зарезервированы.
+    </div>
+
+    <table id="tablestyle" th:if="${user.reservedBooks.size() > 0}">
+        <tr>
+            <th>Заголовок</th>
+            <th>Автор</th>
+            <th>Год выпуска</th>
+            <th>Версия</th>
+            <th>Зарезервировано с</th>
+            <th>Зарезервировано до</th>
+        </tr>
+        <tr th:each="book : ${user.reservedBooks}">
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.releaseYear}"></td>
+            <td th:text="${book.edition}"></td>
+            <td th:text="${book.startReservationDate}"></td>
+            <td th:text="${book.endReservationDate}"></td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

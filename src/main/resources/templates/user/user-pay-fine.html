@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Платить штраф</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/account-layout.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Расширить книгу</h3>
+
+    <table id="tablestyle">
+        <tr>
+            <th>Заголовок</th>
+            <th>Автор</th>
+        </tr>
+        <tr>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+        </tr>
+    </table>
+    <br/><br/>
+    Вы пытаетесь продлить срок возврата книги, которую следовало вернуть в библиотеку <b><text th:text="${book.returnDate}"/></b>.
+    Поскольку он не был продлен или возвращен вовремя, наложен штраф в размере <b>$ <text th:text="${fine}"/></b>. Дата возврата книги
+    может быть продлен при уплате штрафа. Первоначальная дата возврата будет продлена на <b><text th:text="${weeksToExtend}"/></b> неделя (недели).
+    <br/><br/>
+
+    <div class="row">
+        <div class="col-75">
+            <form th:action="@{/user/yourbooks/dopayment}" method="POST">
+                <input style="width: 230px" type="submit" value="Оплатить штраф и продлить дату возврата">
+                <input type="hidden" th:name="fineAmount" th:value="${fine}">
+                <input type="hidden" th:name="weeksToExtend" th:value="${weeksToExtend}">
+                <input type="hidden" th:name="bookId" th:value="${book.bookId}">
+            </form>
+        </div>
+        <div class="col-75">
+            <form th:action="@{/user/yourbooks}" method="GET">
+                <input style="width : 230px; background-color: red;" type="submit" value="Отмена">
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

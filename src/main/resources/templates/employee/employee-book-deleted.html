@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Удаления Книги</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/account-layout.css}">
+</head>
+<body>
+<div class="container">
+    <h3>Книга успешно удалена!</h3>
+
+    <div class="row">
+        <form th:action="@{/employee/books/showbooks}" method="GET">
+            <input type="submit" value="Вернуться в каталог">
+        </form>
+    </div>
+</div>
+</body>
+</html>

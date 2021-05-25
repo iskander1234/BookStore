@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Заказы</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/CSS/account-layout.css}">
+<body>
+
+<ul th:replace="page-layout :: employeeNavBar"></ul>
+
+<div class="container">
+
+    <div th:if="${userId == null}">
+        <h3>Заказы</h3>
+
+        <div class="row">
+            <form th:action="@{/employee/orders}" method="GET">
+                <div class="col-25">
+                    <label for="firstName">Имя</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="firstName" name="firstName">
+                </div>
+                <div class="col-25">
+                    <label for="lastName">Фамилия</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="lastName" name="lastName">
+                </div>
+                <div class="col-50">
+                    <input style="margin-top: 2px" type="submit" value="Поиск">
+                </div>
+            </form>
+        </div>
+        <br/>
+
+        <div th:if="${users.size() > 0}">
+            <table id="tablestyle">
+                <tr>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Адрес</th>
+                    <th>Город</th>
+                    <th style="width: 320px">Действие</th>
+                </tr>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.key.firstName}"></td>
+                    <td th:text="${user.key.lastName}"></td>
+                    <td th:text="${user.key.address}"></td>
+                    <td th:text="${user.key.city}"></td>
+                    <td>
+                        <form th:action="@{/employee/orders}" method="GET">
+                            <input th:if="${user.value == 0}" class="table" style="margin-right: 10px" type="submit" value="Выбрать пользователя">
+                            <text style="float: left; padding-top: 15px; padding-right: 52px;" th:if="${user.value > 0}">На этого пользователя наложен штраф.</text>
+                            <input type="hidden" th:value="${user.key.userId}" th:name="userId">
+                        </form>
+
+                        <form th:action="@{/employee/users/showuserinfo}" method="GET">
+                            <input style="background-color: orange" class="table" type="submit" value="Информация о пользователе">
+                            <input type="hidden" th:value="${user.key.userId}" name="userId">
+                            <input type="hidden" th:value="${user.value}" name="fine">
+                        </form>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div th:if="${userId != null}">
+        <h3>Выбранный пользователем</h3>
+
+        <div class="row">
+            <div class="col-25">
+                <text>Имя:</text>
+            </div>
+            <div class="col-50">
+                <text th:text="${user.firstName + ' ' + user.lastName}"></text>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <text>Адрес:</text>
+            </div>
+            <div class="col-50">
+                <text th:text="${user.address}"></text>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <text>Город:</text>
+            </div>
+            <div class="col-50">
+                <text th:text="${user.city}"></text>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:if="${user != null}" class="container">
+    <h3>Избранные книги</h3>
+    <div th:if="${selectedBookObjects.size() == 0}">
+        <p>Пожалуйста, выберите книги.</p>
+    </div>
+    <div th:if="${selectedBookObjects.size() > 0}">
+        <table id="tablestyle">
+            <tr>
+                <th>Заголовок</th>
+                <th>Автор</th>
+                <th>Год выпуска</th>
+                <th>Версия</th>
+                <th style="width: 200px">Удалить из списка</th>
+            </tr>
+            <tr th:each="book : ${selectedBookObjects}">
+                <td th:text=${book.title}></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.releaseYear}"></td>
+                <td th:text="${book.edition}"></td>
+                <td>
+                    <form>
+                        <input type="submit" value="Удалять" class="table" style="background-color:red; width: 195px">
+                        <input type="hidden" th:value="${book.bookId}" name="removeBookId">
+                        <input type="hidden" th:value="${user.userId}" name="userId">
+                        <input type="hidden" th:value="${title}" name="title">
+                        <input type="hidden" th:value="${author}" name="author">
+                        <input type="hidden" th:value="${selectedBookIds}" name="selectedBookIdsInString">
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <div class="row">
+            <form th:action="@{/employee/confirmorder}" method="GET">
+                <input type="submit" value="Подтвердите заказ">
+                <input type="hidden" th:value="${selectedBookIds}" name="selectedBookIdsInString">
+                <input type="hidden" th:value="${userId}" name="userId">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:if="${user != null}" class="container">
+    <h3>Просмотр книг</h3>
+
+    <form th:action="@{/employee/orders}" method="GET">
+        <div class="row">
+            <div class="col-25">
+                <label for="title">Заголовок</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id=title name="title" th:value="${title}">
+            </div>
+            <div class="col-25">
+                <label for="author">Автор</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="author" name="author" th:value="${author}">
+            </div>
+            <div class="col-50">
+                <input style="margin-top: 1px" type="submit" value="Поиск">
+                <input type="hidden" th:value="${user.userId}" name="userId">
+                <input type="hidden" th:value="${selectedBookIds}" name="selectedBookIdsInString">
+            </div>
+        </div>
+        <br/>
+    </form>
+
+    <div th:if="${searchedBooks.size() > 0}">
+        <table id="tablestyle">
+            <tr>
+                <th>Заголовок</th>
+                <th>Автор</th>
+                <th>Год выпуска</th>
+                <th>Версия</th>
+                <th>Дата возвращения</th>
+                <th>Зарезервировано до</th>
+                <th style="width: 200px">Выбирать</th>
+            </tr>
+            <tr th:each="searchedBook : ${searchedBooks}">
+                <td th:text="${searchedBook.title}"></td>
+                <td th:text="${searchedBook.author}"></td>
+                <td th:text="${searchedBook.releaseYear}"></td>
+                <td th:text="${searchedBook.edition}"></td>
+                <td th:text="${searchedBook.returnDate}"></td>
+                <td th:text="${searchedBook.endReservationDate}"></td>
+                <td>
+                    <div th:if="${searchedBook.reservedByUser != null}">
+
+                        <form th:action="@{/employee/orders}" method="GET">
+                            <input type="submit" class="table" th:if="${searchedBook.theUser == null && searchedBook.reservedByUser.userId == user.userId}" value="Выбирать" style="width: 195px">
+                            <input type="hidden" th:value="${user.userId}" name="userId">
+                            <input type="hidden" th:value="${title}" name="title">
+                            <input type="hidden" th:value="${author}" name="author">
+                            <input type="hidden" th:value="${searchedBook.bookId}" name="selectedBookId">
+                            <input type="hidden" th:value="${selectedBookIds}" name="selectedBookIdsInString">
+                        </form>
+
+                        <text th:if="${searchedBook.theUser == null && searchedBook.reservedByUser.userId != user.userId}">Кто-то зарезервировал эту книгу.</text>
+                    </div>
+                    <text th:if="${searchedBook.theUser != null && searchedBook.reservedByUser == null}">Книга все еще используется.</text>
+                    <text th:if="${searchedBook.theUser != null && searchedBook.reservedByUser != null}">Книга все еще используется.</text>
+
+
+                    <form th:action="@{/employee/orders}" method="GET">
+                        <input class="table" th:if="${searchedBook.theUser == null && searchedBook.reservedByUser == null}" type="submit" value="Выбирать" style="width: 195px">
+                        <input type="hidden" th:value="${user.userId}" name="userId">
+                        <input type="hidden" th:value="${title}" name="title">
+                        <input type="hidden" th:value="${author}" name="author">
+                        <input type="hidden" th:value="${searchedBook.bookId}" name="selectedBookId">
+                        <input type="hidden" th:value="${selectedBookIds}" name="selectedBookIdsInString">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

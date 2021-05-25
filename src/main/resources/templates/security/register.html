@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Регтистрация</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/security-layout.css}">
+</head>
+<body>
+
+<div class="wrapperRegister">
+    <div class="containerRegister">
+
+        <form th:action="@{/register/save}" th:object="${newAccount}" method="POST">
+
+            <p><b>Детали учетной записи</b></p>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="username">Имя пользователя</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="username" name="username" required="required" th:field="${newAccount.userName}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="password">Пароль</label>
+                </div>
+                <div class="col-75">
+                    <input type="password" id="password" name="password" required="required" th:field="${newAccount.password}">
+                </div>
+            </div>
+
+            <p><b>Контактная информация</b></p>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="email">Email</label>
+                </div>
+                <div class="col-75">
+                    <input type="email" id="email" name="email" required="required" th:field="${newAccount.email}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="firstName">Имя</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="firstName" name="firstName" required="required" th:field="${newAccount.firstName}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="lastName">Фамилия</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="lastName" name="lastName" required="required" th:field="${newAccount.lastName}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="address">Адрес</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="address" name="address" required="required" th:field="${newAccount.address}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="address">Город</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="city" name="city" required="required" th:field="${newAccount.city}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="phoneNumber">Телефонный номер</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="phoneNumber" name="phoneNumber" required="required" th:field="${newAccount.phoneNumber}">
+                </div>
+            </div>
+
+            <div class="row">
+                <input class="registerButton" type="submit" value="Регистрация">
+            </div>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

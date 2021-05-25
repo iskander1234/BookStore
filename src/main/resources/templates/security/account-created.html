@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Аккаунт создан</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/security-layout.css}">
+</head>
+<body>
+
+
+<div class="wrapperAccountCreated">
+    <div class="containerAccountCreated">
+        <p>Аккаунт создан!</p>
+        <form action="/login" method="GET">
+            <input class="accountCreatedButton" type="submit" value="Вернуться на страницу входа"/>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

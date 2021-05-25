@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Подтвердите изменения учетной записи</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/account-layout.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Подтвердите настройки учетной записи</h3>
+
+    <div class="row">
+        <div class="col-50">
+            <text>Имя пользователя:</text>
+        </div>
+        <div class="col-75">
+            <text th:text="${user.userName}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-50">
+            <text>Имя:</text>
+        </div>
+        <div class="col-75">
+            <text th:text="${user.firstName}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-50">
+            <text>Фамилия:</text>
+        </div>
+        <div class="col-75">
+            <text th:text="${user.lastName}">
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-50">
+            <text>Аккаунт включен:</text>
+        </div>
+        <div class="col-75">
+            <text th:text="${accStatus}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-50">
+            <text>Роль:</text>
+        </div>
+        <div class="col-75">
+            <text th:text="${role}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-50">
+            <form th:action="@{/admin/saveaccountsettings}" th:method="PUT">
+                <input type="submit" value="Подтверждать">
+                <input type="hidden" th:value="${user.userId}" name="userId">
+                <input type="hidden" th:value="${accStatus}" name="accStatus">
+                <input type="hidden" th:value="${role}" name="role">
+                <input type="hidden" th:value="PUT" th:name="_method">
+            </form>
+        </div>
+        <div class="col-50">
+            <form>
+                <input type="submit" value="Отменить" style="background-color: red">
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

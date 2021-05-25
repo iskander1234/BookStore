@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/account-layout.css}">
+    <title>Дом</title>
+</head>
+<body>
+
+<ul th:replace="page-layout :: adminNavBar"></ul>
+
+<div class="container">
+    <h2 th:text="${'Добро пожаловать' + ' ' + currentUser.firstName + ' ' + currentUser.lastName}"></h2>
+</div>
+
+<div class="container">
+    <h3>Уведомления</h3>
+
+    <div th:if="${currentUser.notifications.size() == 0}">
+        <p>Уведомлений нет.</p>
+    </div>
+
+    <div th:if="${currentUser.notifications.size() > 0}">
+        <div class="row" th:each="notification : ${currentUser.notifications}">
+            <div class="col-25">
+                <text th:text="${notification.notificationDate}"></text>
+            </div>
+            <div class="col-75" style="width: 90%">
+                <text th:text="${notification.notificationMessage}"></text>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+</body>
+</html>
