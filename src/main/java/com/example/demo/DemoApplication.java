@@ -46,21 +46,21 @@ public class DemoApplication {
         CommandLineRunner runner() {
             return args -> {
 
-                User user1 = new User("admin", pwEncoder.encode("test"), "martijn.reede@gmail.com", "Martijn", "Reede", "Huizumerlaan 158", "06-11433823", "Amsterdam");
+                User user1 = new User("admin", pwEncoder.encode("test"), "admin@gmail.com", "Admin", "Admin", "Aksay 12", "87471231212", "Almaty");
                 user1.setRole("ROLE_ADMIN");
 
-                User user2 = new User("employee", pwEncoder.encode("test"), "cyrille.jones@gamail.com", "Cyrille", "Jones", "Hugo de Grootstraat 174", "06-87054875", "Sliedrecht");
+                User user2 = new User("employee", pwEncoder.encode("test"), "employee@gamail.com", "Employee", "Employee", "Mamyr 2", "87470010103", "Astana");
                 user2.setRole("ROLE_EMPLOYEE");
 
-                User user3 = new User("user", pwEncoder.encode("test"), "kevin.leijnse@gmail.com", "Kevin", "Leijnse", "Leidijk 97", "06-18756892", "Groningen");
+                User user3 = new User("user", pwEncoder.encode("test"), "user@gmail.com", "User", "User", "Zhylduz 35", "87474561222", "Almaty");
                 user3.setRole("ROLE_USER");
-                User user4 = new User("aniemies", pwEncoder.encode("test"), "annemie.schuurbiers@gmail.com", "Annemie", "Schuurbiers", "Duinerlaan 173", "06-83472443", "Eelde");
-                User user5 = new User("seppe", pwEncoder.encode("test"), "seppe.bruinink@gmail.com", "Seppe", "Bruinink", "Gangboord 90", "06-13644621", "Oosterhout");
-                User user6 = new User("beukenplein", pwEncoder.encode("test"), "m.snel@gmail.com", "Mikael", "Snel", "Onderkampstraat 30", "06-90982738", "Susteren");
-                User user7 = new User("bookwurm", pwEncoder.encode("test"), "bookwurm@gmail.com", "Martina", "Jansen", "Nieuweweg 200", "06-00492182", "Burgum");
-                User user8 = new User("daniela45", pwEncoder.encode("test"), "d.peerdeman@gmail.com", "Daniela", "Peerdeman", "Beukenkamp 84", "06-88720394", "Hoogezand");
-                User user9 = new User("blackandyellow", pwEncoder.encode("test"), "simons@gmail.com", "Gert", "Simons", "Het Kanaal 170", "06-18392031", "Heerlen");
-                User user10 = new User("superman123", pwEncoder.encode("test"), "edo.vandeijck@gmail.com", "Edo", "van Deijck", "Itersonstraat 195", "06-98374821", "Assen");
+                User user4 = new User("iskander", pwEncoder.encode("test"), "iskander@gmail.com", "Iskander", "Dosgali", "Kazahfilm 13", "87000000008", "Shymkent");
+                User user5 = new User("seppe", pwEncoder.encode("test"), "seppe.kurmanbaeva@gmail.com", "Alua", "Kurmanbaeva", "Kazybek 9", "87477902949", "Astana");
+                User user6 = new User("lady", pwEncoder.encode("test"), "m.saken@gmail.com", "Malika", "Sakenkyzy", "Manasa 77", "87778126655", "Almaty");
+                User user7 = new User("nurlubek", pwEncoder.encode("test"), "nurlubek@gmail.com", "Amir", "Nurlubek", "Raion 5", "87071232324", "Astana");
+                User user8 = new User("uslan45", pwEncoder.encode("test"), "u.nurgamet.com", "Ulan", "Nurgamet", "Zhibek-zholy 6", "87001002030", "Aktau");
+                User user9 = new User("blackandyellow", pwEncoder.encode("test"), "simons@gmail.com", "Jack", "Dou", "Abaya 66", "87779876543", "Shymkent");
+                User user10 = new User("superman123", pwEncoder.encode("test"), "edo.kuanysh@gmail.com", "Kuanysh", "Mattev", "Kurmangazy 45", "87006005040", "Almaty");
 
                 usService.save(user1);
                 usService.save(user2);

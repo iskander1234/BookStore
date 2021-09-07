@@ -25,7 +25,7 @@ public class MidnightApplicationRefresh {
     @Autowired
     NotificationService notifService;
 
-    //Removes overdue reservations and notifications.
+    //Удаляет просроченные бронирования и уведомления.
     public void midnightApplicationRefresher() {
 
         for (Book book : bookService.findAll()) {

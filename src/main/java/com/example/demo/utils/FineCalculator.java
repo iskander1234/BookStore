@@ -25,7 +25,7 @@ public class FineCalculator {
         return fine;
     }
 
-    //Returns a map of all users with the amount of fines in $.
+    //Возвращает карту всех пользователей с суммой штрафов в $.
     public LinkedHashMap<User, BigDecimal> getAllUsersWithFines(List<User> users){
         LinkedHashMap<User, BigDecimal> allUsersWithFines = new LinkedHashMap<User, BigDecimal>();
 
@@ -49,7 +49,7 @@ public class FineCalculator {
         return allUsersWithFines;
     }
 
-    //Returns a map of books with the amount of fines in $.
+    // Возвращает карту книг с суммой штрафов в $.
     public LinkedHashMap<Book, BigDecimal> getBooksWithFines(List<Book> books){
         LinkedHashMap<Book, BigDecimal> booksWithFines = new LinkedHashMap<Book, BigDecimal>();
 
@@ -67,7 +67,8 @@ public class FineCalculator {
         return booksWithFines;
     }
 
-    //Returns a map containing only books that have a fine > $0.00.
+
+    //Возвращает карту, содержащую только книги со штрафом > 0,00 долларов
     public LinkedHashMap<Book, BigDecimal> selectBooksWithFines(List<Book> books){
         LinkedHashMap<Book, BigDecimal> booksWithFines = new LinkedHashMap<Book, BigDecimal>();
 
